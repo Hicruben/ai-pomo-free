@@ -111,7 +111,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                 <AuthorInfo>
                   <p>Contact the AI Pomo Free team</p>
                   <p>For support with the open-source version, please use GitHub Issues.</p>
-                  <p>For premium features, visit <a href="https://ai-pomo.com" target="_blank" rel="noopener noreferrer">AI-Pomo.com</a></p>
+                  <p>For premium features and advanced functionality, check out our hosted platform.</p>
                 </AuthorInfo>
               </FormIntro>
 

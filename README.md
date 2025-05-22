@@ -256,8 +256,6 @@ This open-source version is maintained by the team behind [AI-Pomo.com](https://
 - **Team Collaboration** - Share projects and track team productivity
 - **Cloud Sync** - Access your data from anywhere
 
-**[Try AI-Pomo.com →](https://ai-pomo.com)**
-
 ## Contributing
 
 We welcome contributions to AI-Pomo Free! Please feel free to submit issues, feature requests, and pull requests.
@@ -265,10 +263,10 @@ We welcome contributions to AI-Pomo Free! Please feel free to submit issues, fea
 ## Support
 
 - **Community Support**: Use GitHub Issues for bug reports and feature requests
-- **Premium Support**: Available at [AI-Pomo.com](https://ai-pomo.com) for our hosted platform users
+- **Premium Support**: Available for our hosted platform users
 
 ## Acknowledgments
 
 - The Pomodoro Technique was developed by Francesco Cirillo
 - Inspired by various Pomodoro timer applications and productivity tools
-- Built with ❤️ by the [AI-Pomo.com](https://ai-pomo.com) team
+- Built with ❤️ by the AI-Pomo team
