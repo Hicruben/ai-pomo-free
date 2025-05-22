@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Insertion Test</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #d95550;
+      margin-top: 0;
+    }
+    
+    p {
+      line-height: 1.6;
+    }
+    
+    .button {
+      display: inline-block;
+      background-color: #d95550;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+    
+    .button:hover {
+      background-color: #c04540;
+    }
+    
+    .note {
+      background-color: #fff8e1;
+      padding: 1rem;
+      border-left: 4px solid #ffc107;
+      margin: 1.5rem 0;
+    }
+    
+    code {
+      background-color: #f5f5f5;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pomodoro Insertion Test</h1>
+    
+    <p>This page provides instructions for testing whether pomodoro records are properly inserted into the database when a focus timer completes.</p>
+    
+    <div class="note">
+      <strong>Note:</strong> Make sure both the React frontend and Node.js server are running before proceeding with the tests.
+    </div>
+    
+    <h2>Option 1: Use the Test Tab</h2>
+    <p>The application has a built-in test tab with testing components:</p>
+    <ol>
+      <li>Start the application (<code>cd pomodoro-timer && npm start</code>)</li>
+      <li>Start the server (<code>cd server && npm run dev</code>)</li>
+      <li>Log in to your account</li>
+      <li>Click on the "Test" tab in the navigation bar</li>
+      <li>Scroll down to find the "Pomodoro Insertion Test" and "Direct Pomodoro API Test" sections</li>
+    </ol>
+    
+    <h2>Option 2: Use the Standalone Test Page</h2>
+    <p>If you can't access the Test tab, you can use our standalone test page:</p>
+    <ol>
+      <li>Make sure the application is running</li>
+      <li>Click the button below to open the standalone test page</li>
+      <li>Follow the instructions on the test page</li>
+    </ol>
+    
+    <a href="/test-pomodoro" class="button">Open Standalone Test Page</a>
+    
+    <h2>What to Look For</h2>
+    <p>Both tests will show:</p>
+    <ul>
+      <li>A success message if a new pomodoro record was inserted</li>
+      <li>Details about the inserted record, including project ID and task ID</li>
+      <li>The count of records before and after the test</li>
+    </ul>
+    
+    <div class="note">
+      <strong>Troubleshooting:</strong> If you encounter any issues, make sure:
+      <ul>
+        <li>You are logged in to your account</li>
+        <li>Both the frontend and server are running</li>
+        <li>You have selected a project before running the tests</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

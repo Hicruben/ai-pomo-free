@@ -1,0 +1,24 @@
+import React from 'react';
+import styled from 'styled-components';
+
+// This is a simplified version of the MilestoneTimeline component
+// It's used as a placeholder until we implement the full component
+const MilestoneTimeline = ({ milestones, projectId }) => {
+  return (
+    <TimelineContainer>
+      <h3>Milestones</h3>
+      <p>This is a placeholder for the milestone timeline component.</p>
+      <p>Project ID: {projectId}</p>
+      <p>Number of Milestones: {milestones.length}</p>
+    </TimelineContainer>
+  );
+};
+
+const TimelineContainer = styled.div`
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+`;
+
+export default MilestoneTimeline;

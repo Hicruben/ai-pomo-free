@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG to Favicon Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #svg-container {
+            margin: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 20px;
+        }
+        .button-container {
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>SVG to Favicon Converter</h1>
+    <div id="svg-container">
+        <img id="svg-image" src="tomato-emoji.svg" width="128" height="128">
+    </div>
+    <div>
+        <canvas id="canvas16" width="16" height="16"></canvas>
+        <canvas id="canvas32" width="32" height="32"></canvas>
+        <canvas id="canvas64" width="64" height="64"></canvas>
+    </div>
+    <div class="button-container">
+        <button id="convert-button">Convert to Favicon</button>
+        <button id="download-button" disabled>Download Favicon</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const svgImage = document.getElementById('svg-image');
+            const convertButton = document.getElementById('convert-button');
+            const downloadButton = document.getElementById('download-button');
+            
+            convertButton.addEventListener('click', function() {
+                // Draw SVG on canvases
+                drawSVG('canvas16', 16);
+                drawSVG('canvas32', 32);
+                drawSVG('canvas64', 64);
+                
+                // Enable download button
+                downloadButton.disabled = false;
+            });
+            
+            downloadButton.addEventListener('click', function() {
+                // Create a link element
+                const link = document.createElement('a');
+                
+                // Get the canvas with the highest resolution
+                const canvas = document.getElementById('canvas64');
+                
+                // Convert canvas to blob
+                canvas.toBlob(function(blob) {
+                    // Create a URL for the blob
+                    const url = URL.createObjectURL(blob);
+                    
+                    // Set the link's href to the blob URL
+                    link.href = url;
+                    
+                    // Set the download attribute to specify the filename
+                    link.download = 'favicon.ico';
+                    
+                    // Append the link to the body
+                    document.body.appendChild(link);
+                    
+                    // Trigger a click on the link to start the download
+                    link.click();
+                    
+                    // Remove the link from the document
+                    document.body.removeChild(link);
+                    
+                    // Release the blob URL
+                    URL.revokeObjectURL(url);
+                });
+            });
+        });
+
+        function drawSVG(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Draw SVG
+            const svgImage = document.getElementById('svg-image');
+            ctx.drawImage(svgImage, 0, 0, size, size);
+        }
+    </script>
+</body>
+</html>

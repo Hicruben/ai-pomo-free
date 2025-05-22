@@ -1,0 +1,64 @@
+# Dependencies
+/node_modules
+/pomodoro-timer/node_modules
+/server/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production
+/build
+/pomodoro-timer/build
+/server/dist
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+/server/.env
+/server/.env.production
+/pomodoro-timer/.env
+/pomodoro-timer/.env.production
+
+# Sensitive configuration files
+ecosystem.config.js
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/server/logs
+*.log
+
+# Editor directories and files
+.idea
+.vscode
+.cursor
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# MongoDB data
+/data
+/backups
+/server/backups
+
+# Temporary files
+.tmp
+.temp

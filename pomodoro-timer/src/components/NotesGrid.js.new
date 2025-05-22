@@ -1,0 +1,24 @@
+import React from 'react';
+import styled from 'styled-components';
+
+// This is a simplified version of the NotesGrid component
+// It's used as a placeholder until we implement the full component
+const NotesGrid = ({ notes, projectId }) => {
+  return (
+    <GridContainer>
+      <h3>Notes</h3>
+      <p>This is a placeholder for the notes grid component.</p>
+      <p>Project ID: {projectId}</p>
+      <p>Number of Notes: {notes.length}</p>
+    </GridContainer>
+  );
+};
+
+const GridContainer = styled.div`
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+`;
+
+export default NotesGrid;

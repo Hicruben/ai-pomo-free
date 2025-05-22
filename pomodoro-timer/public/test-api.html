@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #d95550;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #c04540;
+    }
+    .result {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 4px;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow: auto;
+    }
+    .error {
+      color: #c62828;
+      background-color: #ffebee;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .success {
+      color: #2e7d32;
+      background-color: #e8f5e9;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>API Test</h1>
+
+  <div class="container">
+    <div class="card">
+      <h2>1. Login</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" value="test@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" value="password123" required>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <div id="loginResult" class="result" style="display: none;"></div>
+    </div>
+
+    <div class="card">
+      <h2>2. Create Project</h2>
+      <form id="createProjectForm">
+        <div class="form-group">
+          <label for="projectTitle">Title:</label>
+          <input type="text" id="projectTitle" value="Test Project" required>
+        </div>
+        <div class="form-group">
+          <label for="projectDescription">Description:</label>
+          <textarea id="projectDescription" rows="3">This is a test project</textarea>
+        </div>
+        <button type="submit">Create Project</button>
+      </form>
+      <div id="createProjectResult" class="result" style="display: none;"></div>
+    </div>
+
+    <div class="card">
+      <h2>3. Get Projects</h2>
+      <button id="getProjectsBtn">Get Projects</button>
+      <div id="getProjectsResult" class="result" style="display: none;"></div>
+    </div>
+  </div>
+
+  <script>
+    // API URL
+    const API_URL = 'http://localhost:5000';
+
+    // Store token
+    let token = '';
+
+    // Login form
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const resultDiv = document.getElementById('loginResult');
+
+      resultDiv.innerHTML = 'Logging in...';
+      resultDiv.style.display = 'block';
+      resultDiv.className = 'result';
+
+      try {
+        const response = await fetch(`${API_URL}/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Login failed');
+        }
+
+        token = data.token;
+
+        resultDiv.innerHTML = 'Login successful!\n\nToken: ' + token;
+        resultDiv.classList.add('success');
+
+        // Enable other forms
+        document.getElementById('createProjectForm').querySelector('button').disabled = false;
+        document.getElementById('getProjectsBtn').disabled = false;
+      } catch (error) {
+        resultDiv.innerHTML = 'Error: ' + error.message;
+        resultDiv.classList.add('error');
+      }
+    });
+
+    // Create project form
+    document.getElementById('createProjectForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      if (!token) {
+        alert('Please login first!');
+        return;
+      }
+
+      const title = document.getElementById('projectTitle').value;
+      const description = document.getElementById('projectDescription').value;
+      const resultDiv = document.getElementById('createProjectResult');
+
+      resultDiv.innerHTML = 'Creating project...';
+      resultDiv.style.display = 'block';
+      resultDiv.className = 'result';
+
+      try {
+        const response = await fetch(`${API_URL}/projects`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ title, description })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to create project');
+        }
+
+        resultDiv.innerHTML = 'Project created successfully!\n\n' + JSON.stringify(data, null, 2);
+        resultDiv.classList.add('success');
+      } catch (error) {
+        resultDiv.innerHTML = 'Error: ' + error.message;
+        resultDiv.classList.add('error');
+      }
+    });
+
+    // Get projects button
+    document.getElementById('getProjectsBtn').addEventListener('click', async function() {
+      if (!token) {
+        alert('Please login first!');
+        return;
+      }
+
+      const resultDiv = document.getElementById('getProjectsResult');
+
+      resultDiv.innerHTML = 'Getting projects...';
+      resultDiv.style.display = 'block';
+      resultDiv.className = 'result';
+
+      try {
+        const response = await fetch(`${API_URL}/projects`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to get projects');
+        }
+
+        resultDiv.innerHTML = 'Projects retrieved successfully!\n\n' + JSON.stringify(data, null, 2);
+        resultDiv.classList.add('success');
+      } catch (error) {
+        resultDiv.innerHTML = 'Error: ' + error.message;
+        resultDiv.classList.add('error');
+      }
+    });
+
+    // Disable forms until login
+    document.getElementById('createProjectForm').querySelector('button').disabled = true;
+    document.getElementById('getProjectsBtn').disabled = true;
+  </script>
+</body>
+</html>

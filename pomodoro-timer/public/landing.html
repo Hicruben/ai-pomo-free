@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Pomo - Boost Your Productivity with AI-Enhanced Pomodoro Timer</title>
+    <meta name="description" content="AI Pomo combines the Pomodoro technique with AI-powered task management to help you focus, track progress, and achieve your goals efficiently.">
+    <meta name="keywords" content="pomodoro timer, AI productivity, task management, time management, focus timer, productivity app, GTD system">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-pomo.com/">
+    <meta property="og:title" content="AI Pomo - AI-Enhanced Pomodoro Timer">
+    <meta property="og:description" content="Boost your productivity with our AI-powered Pomodoro timer and task management system.">
+    <meta property="og:image" content="https://ai-pomo.com/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ai-pomo.com/">
+    <meta property="twitter:title" content="AI Pomo - AI-Enhanced Pomodoro Timer">
+    <meta property="twitter:description" content="Boost your productivity with our AI-powered Pomodoro timer and task management system.">
+    <meta property="twitter:image" content="https://ai-pomo.com/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="logo192.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ai-pomo.com/">
+    
+    <style>
+        :root {
+            --primary-color: #d95550;
+            --secondary-color: #4c9195;
+            --tertiary-color: #457ca3;
+            --background-color: #f8f9fa;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --header-bg: #ffffff;
+            --header-text: #333333;
+            --section-padding: 5rem 2rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        
+        header {
+            background-color: var(--header-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo::before {
+            content: "🍅";
+            margin-right: 0.5rem;
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: #c04540;
+        }
+        
+        .hero {
+            padding: 10rem 2rem 5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: #555;
+        }
+        
+        section {
+            padding: var(--section-padding);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .feature-card p {
+            color: #666;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">AI Pomo</a>
+            <a href="/app" class="cta-button">Get Started</a>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <h1>Boost Your Productivity with AI-Enhanced Pomodoro Timer</h1>
+        <p>AI Pomo combines the proven Pomodoro technique with AI-powered task management to help you focus, track progress, and achieve your goals efficiently.</p>
+        <a href="/app" class="cta-button">Start Using AI Pomo</a>
+    </section>
+    
+    <section id="features">
+        <div class="section-title">
+            <h2>Key Features</h2>
+            <p>Discover how AI Pomo can transform your productivity and help you accomplish more with less stress.</p>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🍅</div>
+                <h3>Customizable Pomodoro Timer</h3>
+                <p>Personalize your work sessions, short breaks, and long breaks to match your optimal focus rhythm. Default 25-minute work sessions with 5-minute breaks help maintain peak productivity.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-Powered Task Management</h3>
+                <p>Our intelligent system helps you break down complex projects into manageable tasks, estimate effort, and track progress with precision.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Comprehensive Calendar</h3>
+                <p>Visualize your productivity with our calendar feature showing milestones, deadlines, and completed pomodoros. Easily track your progress over time.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Cross-Device Synchronization</h3>
+                <p>Access your projects, tasks, and timer from any device with our cloud-based synchronization. Your data is always up-to-date and secure.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>Project Organization</h3>
+                <p>Organize your work with our GTD-inspired project management system. Create projects with tasks, milestones, and notes to keep everything in one place.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Productivity Analytics</h3>
+                <p>Gain insights into your work patterns with detailed statistics and visualizations. Identify your most productive times and optimize your schedule.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <a href="/" class="logo">AI Pomo</a>
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/contact">Contact Us</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 AI Pomo. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

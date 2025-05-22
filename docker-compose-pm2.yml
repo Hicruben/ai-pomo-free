@@ -1,0 +1,27 @@
+name: pomodoro-timer-production
+
+services:
+  # MongoDB service
+  mongodb:
+    image: mongo:latest
+    container_name: pomodoro-mongodb-prod
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: pomodoro-timer
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - pomodoro-network
+
+volumes:
+  mongodb_data:
+    name: pomodoro-mongodb-data-prod
+
+networks:
+  pomodoro-network:
+    driver: bridge

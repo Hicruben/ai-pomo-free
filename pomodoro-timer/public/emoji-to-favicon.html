@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emoji to Favicon Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #emoji-container {
+            font-size: 128px;
+            margin: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 20px;
+        }
+        .button-container {
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Emoji to Favicon Converter</h1>
+    <div id="emoji-container">🍅</div>
+    <div>
+        <canvas id="canvas16" width="16" height="16"></canvas>
+        <canvas id="canvas32" width="32" height="32"></canvas>
+        <canvas id="canvas64" width="64" height="64"></canvas>
+    </div>
+    <div class="button-container">
+        <button id="download-button">Download Favicon</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Draw emoji on canvases
+            drawEmoji('canvas16', 16);
+            drawEmoji('canvas32', 32);
+            drawEmoji('canvas64', 64);
+
+            // Set up download button
+            document.getElementById('download-button').addEventListener('click', function() {
+                // Create a link element
+                const link = document.createElement('a');
+                
+                // Get the canvas with the highest resolution
+                const canvas = document.getElementById('canvas64');
+                
+                // Convert canvas to blob
+                canvas.toBlob(function(blob) {
+                    // Create a URL for the blob
+                    const url = URL.createObjectURL(blob);
+                    
+                    // Set the link's href to the blob URL
+                    link.href = url;
+                    
+                    // Set the download attribute to specify the filename
+                    link.download = 'favicon.ico';
+                    
+                    // Append the link to the body
+                    document.body.appendChild(link);
+                    
+                    // Trigger a click on the link to start the download
+                    link.click();
+                    
+                    // Remove the link from the document
+                    document.body.removeChild(link);
+                    
+                    // Release the blob URL
+                    URL.revokeObjectURL(url);
+                });
+            });
+        });
+
+        function drawEmoji(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Draw emoji
+            ctx.font = `${size}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🍅', size / 2, size / 2);
+        }
+    </script>
+</body>
+</html>
